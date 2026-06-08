@@ -1,0 +1,60 @@
+<h1>Projeto</h1>
+<ul class="tree">
+    <li>
+        Backend
+        <ul>
+            <li>
+                app
+                <ul>
+                    <li>produto.js</li>
+                    <li>usuario.js</li>
+                    <li>venda.js</li>
+                </ul>
+            </li>
+            <li>
+                config
+                <ul>
+                    <li>banco.js</li>
+                    <li>rotas.js</li>
+                    <li>servidor.js</li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+    <li>
+        Frontend
+        <ul>
+            <li>
+                public
+                <ul>
+                    <li>app.css</li>
+                    <li>app.js</li>
+                    <li>index.html</li>
+
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<link rel="stylesheet" href="http://files.cod3r.com.br/curso-web/tree.css">
+
+<script>
+    const itens = document.querySelectorAll('li') /*Pegamos todos os <li> e Todos eles entram dentro da variável itens.*/
+
+        itens.forEach(function(item) { /*Passamos por cada item*/
+            item.addEventListener('click', function(event) { /*Colocamos um evento de clique. Quando o usuário clicar nesse item, execute esse código: */
+                event.stopPropagation() /*Evitamos clique duplicado. Sem isso, ao clicar em HTML, o JavaScript poderia entender que você clicou também em Front-end.*/
+
+                const sublista = item.querySelector('ul')/*Procuramos uma sublista dentro do item clicado*/
+
+                if (sublista) { /*Verificamos se existe sublista. Se existir, ele continua. Se não existir, não faz nada.*/
+                    if (sublista.style.display === 'none') {/*Alternamos entre esconder e mostrar*/
+                        sublista.style.display = 'block'/*Se estiver escondido, Mostra de novo*/
+                    } else {
+                        sublista.style.display = 'none' /*Se estiver aparecendo, esconde.*/
+                    }
+                }
+            })
+        })
+</script>

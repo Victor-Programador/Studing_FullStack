@@ -1,0 +1,113 @@
+<div wm-slider>
+
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem1.jpg" alt="Muro da Cidade" width="513" height="342" title="Muro da cidade por Tarso Bessa">
+    </p>
+    
+    <p>
+        <img src="http://files.cod3r.com.br/curso-web/imagem2.gif" alt="intro cod3r" width="513" height="342">
+    </p>
+    
+    <p class="circular">
+        <img src="http://files.cod3r.com.br/curso-web/imagem3.png" alt="rio de janeiro" height="342">
+    </p>
+    
+    <p class="texto">
+        <img src="http://files.cod3r.com.br/curso-web/avatar.jpg" alt="avatar" height="50" align="left">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo saepe itaque asperiores est praesentium 
+        laboriosam neque ipsum quas nostrum, alias voluptas velit delectus perferendis quae minus voluptatem non at quibusdam.
+    </p>
+    
+    <p class="cidade"></p>
+    
+    <p>
+        <picture>
+            <source srcset="http://files.cod3r.com.br/curso-web/logo-larga.png" media="(min-width: 600px)">
+            <img src="http://files.cod3r.com.br/curso-web/logo-estreita.png" alt="logo">
+        </picture>
+    </p>
+
+</div>
+
+
+
+<style>
+    .circular{
+        width: 513px;
+        background-color: gray;
+    }
+
+    .texto{
+        width: 400px;
+    }
+    
+    .texto img{
+        margin-right: 10px;
+    }
+
+    .cidade{
+        width: 513px;
+        height: 342px;
+        background-image: url('http://files.cod3r.com.br/curso-web/imagem4.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 200%;
+    }
+
+    [wm-slider] {
+        position: relative;
+        width: 513px;
+        height: 342px;
+        overflow: hidden;
+        border: 2px solid black;
+    }
+
+    [wm-slider] p {
+        position: absolute;
+        margin: 0px;
+        width: 513px;
+        height: 342px;
+    }
+
+</style>
+
+<script>
+    function moverElemento(elemento, inicio, fim, passo, callback) {
+        const novoInicio = inicio + passo
+
+        if(novoInicio >= fim){
+            elemento.style.left = fim + 'px'
+            callback()
+        }else{
+            elemento.style.left = novoInicio + 'px'
+
+            setTimeout(() => {
+                moverElemento(elemento, novoInicio, fim, passo, callback)
+            }, 7)
+        }
+    }
+
+    function slider() {
+        const elementos = document.querySelectorAll('[wm-slider] > p')
+        const slides = Array.from(elementos)
+
+        slides.forEach(slide => {
+            slide.style.left = '-513px'
+        })
+
+        function exibirSlide(indice) {
+            const slide = slides[indice]
+
+            moverElemento(slide, -513, 513, 5, () => {
+                slide.style.left = '-513px'
+
+                const proximoIndice = indice + 1 >= slides.length ? 0 : indice + 1
+                exibirSlide(proximoIndice)
+            })
+        }
+
+        exibirSlide(0)
+    }
+
+    slider()
+</script>
