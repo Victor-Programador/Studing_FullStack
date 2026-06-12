@@ -3,11 +3,121 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desafio Menu</title>
     <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <style>
-        /* ... */
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        
+        .cabecalho{
+            background-color: rgb(58, 57, 57);
+            display: flex;
+            align-items: center;
+            padding-top: 10px;
+            border-bottom: solid 10px skyblue;
+            width: 100%;
+        }
+
+        .logo{
+            margin-right: 40px;
+        }
+        
+        img{
+            width: 270px;
+        }
+
+        ul{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        li{
+            margin: 15px;
+        }
+
+        .menu{
+            flex: 1;
+            padding: 0;
+        }
+
+
+        .menu-toggle{
+            display: none;
+        }
+
+        a{
+            text-decoration: none;
+        }
+
+        li{
+            width: 70px;
+            height: 40px;
+            text-align: center;
+        }
+
+        li a{
+            color: white;
+            font-family: 'oswald', sans-serif;
+            font-size: 20px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        li a:hover,
+        li a.ativo{
+            background-color: aquamarine;
+            color: black;
+        }
+        
+
+        aside a{
+            color: white;
+            margin: 10px;
+            font-family: 'awesome', sans-serif;
+        }
+
+        .destaque{
+            background-color: red;
+            border-radius: 40px;
+            padding: 15px 25px;
+        }
+
+        body{
+            background-color: lightgray;
+        }
+
+        @media(max-width: 1000px){
+            aside{
+                display: none;
+            }
+        }
+
+        @media( max-width: 700px) {
+
+            ul, li{
+                display: none;
+            }
+
+            .menu-toggle{
+                display: block;
+                border-radius: 10px;
+                padding: 10px;
+                background-color: rgb(97, 97, 97);
+                color: white;
+                margin-left: auto;
+            }
+        }
+
+
+        
+        
     </style>
 </head>
 
@@ -44,7 +154,20 @@
     </header>
 
     <script>
-        // ...
+        const links = document.querySelectorAll('.menu a')
+
+        links.forEach(link => {
+            link.addEventListener('click', function(){
+
+                // remove a classe ativo de todos
+                links.forEach(l => {
+                    l.classList.remove('ativo')
+                })
+
+                // adiciona ao link clicado
+                this.classList.add('ativo')
+            })
+        })
     </script>
 </body>
 
